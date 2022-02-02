@@ -62,6 +62,28 @@ class LinkedList:
     def getLength(self):
         return self.nodeCount
 
+    def popAt(self, pos):
+        delete_node = self.getAt(pos)
+        if pos < 1 or pos > self.nodeCount:
+            raise IndexError
+        if pos == 1:
+            if self.nodeCount == 1:
+                self.head = None
+                self.tail = None
+                self.nodeCount = 0
+            else:
+                self.head = self.head.next
+                self.nodeCount -= 1
+            return delete_node.data
+        else:
+            prev = self.getAt(pos - 1)
+            prev.next = delete_node.next
+            if pos == self.nodeCount:
+                prev.next = None
+                self.tail = prev
+        self.nodeCount -= 1
+        return delete_node.data
+
     def traverse(self):
         result = []
         curr = self.head
@@ -75,3 +97,7 @@ class LinkedList:
         if L.tail:
             self.tail = L.tail
         self.nodeCount += L.nodeCount
+
+
+def solution(x):
+    return 0
