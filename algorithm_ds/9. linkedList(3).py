@@ -9,7 +9,7 @@ class LinkedList:
 
     def __init__(self):
         self.nodeCount = 0
-        self.head = Node(None) # dummy
+        self.head = Node(None)
         self.tail = None
         self.head.next = self.tail
 
@@ -26,11 +26,9 @@ class LinkedList:
                 s += ' -> '
         return s
 
-    # 리스트 길이 얻어내기
     def getLength(self):
         return self.nodeCount
 
-    # 리스트 원소 순회
     def traverse(self):
         result = []
         curr = self.head
@@ -39,7 +37,6 @@ class LinkedList:
             result.append(curr.data)
         return result
 
-    # pos번 째 원소를 리턴하는 메서드
     def getAt(self, pos):
         if pos < 0 or pos > self.nodeCount:
             return None
@@ -52,7 +49,6 @@ class LinkedList:
 
         return curr
 
-    # 리스트 마지막에 삽입
     def insertAfter(self, prev, newNode):
         newNode.next = prev.next
         if prev.next is None:
@@ -61,7 +57,6 @@ class LinkedList:
         self.nodeCount += 1
         return True
 
-    # 리스트 pos 위치에 삽입
     def insertAt(self, pos, newNode):
         if pos < 1 or pos > self.nodeCount + 1:
             return False
@@ -72,7 +67,6 @@ class LinkedList:
             prev = self.getAt(pos - 1)
         return self.insertAfter(prev, newNode)
 
-    # 리스트 이어 붙이기
     def concat(self, L):
         self.tail.next = L.head.next
         if L.tail:
