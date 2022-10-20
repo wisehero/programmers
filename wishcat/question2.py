@@ -26,7 +26,6 @@ def make_timetable(a_time: list, b_time: list, c_time: list, d_time: list):
 
     for key in part_timer_schedule.keys():
         part_timer_schedule[key].sort(key=lambda x: x[1])
-
     print(part_timer_schedule)
 
 
