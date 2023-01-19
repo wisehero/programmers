@@ -1,8 +1,10 @@
-def solution(fees, records):
-    answer = []
+def solution(number):
+    answer = 0
+    l = len(number)
+    for i in range(l - 2):
+        for j in range(i + 1, l - 1):
+            for k in range(j + 1, l):
+                # print(number[i],number[j],number[k])
+                if number[i] + number[j] + number[k] == 0:
+                    answer += 1
     return answer
-
-
-
-
-print(solution([-2, 3, 0, 2, -5]))
