@@ -25,4 +25,4 @@ def solution(s):
     return answer
 
 
-print(solution("aaabbaccccabbb"))
+print(solution("aaabbaccccabbb"
