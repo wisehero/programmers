@@ -5,7 +5,7 @@ def solution(s):
     x = ''
     for i in range(len(s)):
         if x == '':
-            if i == len(s) -1 :
+            if i == len(s) - 1:
                 answer += 1
                 break
             x = s[i]
@@ -23,6 +23,3 @@ def solution(s):
             answer += 1
 
     return answer
-
-
-print(solution("aaabbaccccabbb"
