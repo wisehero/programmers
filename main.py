@@ -1,23 +1,6 @@
-from collections import Counter
-
-
-def solution(line):
-    answer = ''
-    pre = line[0]
-    answer += pre
-    if len(line) == 1:
-        return pre
-    for index in range(1, len(line)):
-        if line[index] == pre:
-            if answer[-1] == '*':
-                continue
-            answer += "*"
-        else:
-            answer += line[index]
-            pre = line[index]
-
+def solution(array):
+    answer = 0
+    for a in array:
+        a = str(a)
+        answer += a.count("7")
     return answer
-
-
-line = "aabbbc"
-print(solution(line))
