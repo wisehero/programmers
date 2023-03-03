@@ -1,6 +1,10 @@
-def solution(bin1, bin2):
-    answer = ''
-    a, b = int(bin1, 2), int(bin2, 2)
-    c = a + b
-    answer = bin(c)[2:]
+from collections import Counter
+
+
+def solution(before, after):
+    answer = 0
+    before_counter = Counter(before)
+    after_counter = Counter(after)
+    if after_counter == before_counter:
+        answer = 1
     return answer
