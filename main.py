@@ -1,10 +1,6 @@
-from collections import Counter
-
-
-def solution(before, after):
-    answer = 0
-    before_counter = Counter(before)
-    after_counter = Counter(after)
-    if after_counter == before_counter:
-        answer = 1
+def solution(numlist, n):
+    answer = sorted(numlist, key=lambda x: (abs(x - n), n - x))
     return answer
+
+
+solution([1, 2, 3, 4, 5, 6], 4)
