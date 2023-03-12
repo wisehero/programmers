@@ -1,21 +1,13 @@
-a, b, c = map(int, input().split())
-e, s, m = 1, 1, 1
-year = 1
+word = input()
+ans = [0] * 10
+for i in range(len(word)):
+    num = int(word[i])
+    if num == 6 or num == 9:
+        if ans[6] <= ans[9]:
+            ans[6] += 1
+        else:
+            ans[9] += 1
+    else:
+        ans[num] += 1
 
-while True:
-    if a == e and b == s and c == m:
-        print(year)
-        break
-
-    e += 1
-    s += 1
-    m += 1
-
-    if e > 15:
-        e = 1
-    if s > 28:
-        s = 1
-    if m > 19:
-        m = 1
-
-    year += 1
+print(max(ans))
