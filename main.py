@@ -1,6 +1,21 @@
-def solution(numlist, n):
-    answer = sorted(numlist, key=lambda x: (abs(x - n), n - x))
-    return answer
+a, b, c = map(int, input().split())
+e, s, m = 1, 1, 1
+year = 1
 
+while True:
+    if a == e and b == s and c == m:
+        print(year)
+        break
 
-solution([1, 2, 3, 4, 5, 6], 4)
+    e += 1
+    s += 1
+    m += 1
+
+    if e > 15:
+        e = 1
+    if s > 28:
+        s = 1
+    if m > 19:
+        m = 1
+
+    year += 1
