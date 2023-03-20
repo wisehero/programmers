@@ -1,15 +1,14 @@
-li = []
-answer = 0
-for i in range(8):
-    s = input()
-    li.append(list(s))
-for i in range(8):
-    for j in range(8):
-        if i % 2 == 0:
-            if j % 2 == 0 and li[i][j] == "F":
-                answer += 1
-        elif i % 2 != 0:
-            if j % 2 != 0 and li[i][j] == "F":
-                answer += 1
+n = input()
 
-print(answer)
+if "0" not in n:
+    print(-1)
+else:
+    num_sum = 0
+    for i in range(len(n)):
+        num_sum += int(n[i])
+    if num_sum % 3 != 0:
+        print(-1)
+    else:
+        sorted_num = sorted(n, reverse=True)
+        answer = "".join(sorted_num)
+        print(answer)
