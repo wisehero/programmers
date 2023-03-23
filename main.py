@@ -1,7 +1,13 @@
-n, m = map(int, input().split())
+n = int(input())
+m = list(map(int, input().split()))
+i = 0
+n = 2
+while True:
+    for i in range(len(m)):
+        if n % 2 != m[i]:
+            n += 1
+            break
 
-a = list(map(int, input().split()))
-b = list(map(int, input().split()))
-c = a + b
-c.sort()
-print(*c)
+        if i == len(m) - 1:
+            print(n)
+
