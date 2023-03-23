@@ -1,13 +1,6 @@
-n = int(input())
-m = list(map(int, input().split()))
-i = 0
-n = 2
-while True:
-    for i in range(len(m)):
-        if n % 2 != m[i]:
-            n += 1
-            break
-
-        if i == len(m) - 1:
-            print(n)
-
+number = []
+for i in range(1, 46):
+    number += [i] * i
+a, b = map(int, input().split())
+print(sum(number[a - 1:b]))
+print(len(number))
