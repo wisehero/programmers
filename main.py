@@ -1,9 +1,13 @@
-times = []
-for _ in range(4):
-    times.append(int(input()))
+def solution(chicken):
+    answer = 0
+    coupon = chicken
+    while True:
+        service = coupon // 10
+        answer += service
+        coupon -= service * 10
+        coupon += service
 
-amount = sum(times)
-minutes = amount // 60
-seconds = amount % 60
-print(minutes)
-print(seconds)
+        if coupon < 10:
+            break
+
+solution(1081)
