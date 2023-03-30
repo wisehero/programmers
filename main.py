@@ -1,19 +1,18 @@
-def solution(my_string):
-    answer = 0
-    my_string = list(my_string)
-    num = ""
-    while my_string:
-        e = my_string.pop()
-        if e.isdigit():
-            num += e
-            if len(my_string) == 0:
-                answer += int(num[::-1])
-                break
-        elif not e.isdigit() and len(num) > 0:
-            answer += int(num[::-1])
-            num = ""
+from itertools import product
 
+
+def solution(n):
+    answer = 0
+
+    if n == 1:
+        return 1
+
+    for i in range(1, n + 1):
+        li = list(product([1, 2], repeat=i))
+        for l in li:
+            if sum(l) == n:
+                answer += 1
     return answer
 
 
-print(solution("10"))
+print(solution(3))
