@@ -1,19 +1,8 @@
-from collections import deque
-
-
-def solution(A, B):
-    if A == B:
-        return 0
+def solution(i, j, k):
     answer = 0
-    deque_A = deque(A)
-    for _ in range(len(A)):
-        deque_A.appendleft(deque_A.pop())
-        answer += 1
-        if "".join(deque_A) == B:
-            return answer
-        if A == "".join(deque_A):
-            return -1
+    for num in range(i, j+1):
+        if str(num).count(str(k)):
+            answer += 1
     return answer
 
-
-print(solution("hello", "ohell"))
+print(solution(1,13,1))
