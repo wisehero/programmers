@@ -1,8 +1,10 @@
-def solution(i, j, k):
-    answer = 0
-    for num in range(i, j+1):
-        if str(num).count(str(k)):
-            answer += 1
-    return answer
+from collections import Counter
 
-print(solution(1,13,1))
+
+def solution(array):
+    answer = 0
+    counter = Counter(array)
+    if list(counter.values()).count(counter.most_common()[0][1]) > 1:
+        return -1
+    else:
+        return counter.most_common()[0][0]
