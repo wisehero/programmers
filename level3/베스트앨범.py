@@ -2,7 +2,7 @@ def solution(genres, plays):
     answer = []
     genres_dict = {}
     plays_dict = {}
-    
+
     for genre in genres:
         genres_dict[genre] = 0
     for i, v in enumerate(plays):
