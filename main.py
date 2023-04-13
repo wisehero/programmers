@@ -1,27 +1,31 @@
-def solution(board):
+def solution(number):
     answer = 0
-    N = len(board)
-    dx = [-1, 1, 0, 0, -1, -1, 1, 1]
-    dy = [0, 0, -1, 1, -1, 1, -1, 1]
+    numbers = "1234567890"
+    str = []
+    for n in number:
+        idx = numbers.index(n)
+        if len(str) != 0 and numbers[idx] == str[-1] and numbers[idx] != "0":
+            continue
 
-    z = []
+        if numbers[idx] == "0":
+            answer += 1
+            str.append(numbers[idx])
 
-    for x in range(N):
-        for y in range(N):
-            if board[x][y] == 1:
-                z.append((x, y))
+        else:
+            str.append(numbers[idx])
+            str.append(numbers[idx + 1])
+            answer += 1
 
-    for x, y in z:
-        for i in range(8):
-            nx = x + dx[i]
-            ny = y + dy[i]
-            if 0 <= nx < N and 0 <= ny < N:
-                board[nx][ny] = 1
+        if str[-1] != number[:len(str)][-1]:
+            str.pop()
+            answer += 1
 
-    for b in board:
-        answer += b.count(0)
+        if "".join(str) == number:
+            print(answer)
+            return answer
+
 
     return answer
 
 
-solution([[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 1, 0, 0], [0, 0, 0, 0, 0]])
+solution("321")
