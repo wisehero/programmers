@@ -1,31 +1,31 @@
-def solution(number):
+from collections import Counter
+
+
+def solution(kor, usa, incs):
     answer = 0
-    numbers = "1234567890"
-    str = []
-    for n in number:
-        idx = numbers.index(n)
-        if len(str) != 0 and numbers[idx] == str[-1] and numbers[idx] != "0":
-            continue
+    same_incs = {}
 
-        if numbers[idx] == "0":
-            answer += 1
-            str.append(numbers[idx])
+    for i in kor:
+        for j in usa:
+            same_incs[i + " " + j] = 0
 
-        else:
-            str.append(numbers[idx])
-            str.append(numbers[idx + 1])
-            answer += 1
+    for key in same_incs.keys():
+        k, u = key.split(" ")
+        for inc in incs:
+            inc = inc.split(" ")
+            if k in inc and u in inc:
+                same_incs[key] += 1
 
-        if str[-1] != number[:len(str)][-1]:
-            str.pop()
-            answer += 1
-
-        if "".join(str) == number:
-            print(answer)
-            return answer
+    counter = Counter(same_incs).most_common()[0][1]
+    print(counter)
+    return counter
 
 
-    return answer
+solution(
+    ["AAA", "BCD", "AAAAA", "ZY"],
+    ["AB", "AA", "TTTT"],
+    ["AB BCD AA AAA TTTT AAAAA", "BCD AAA", "AB AAA TTTT BCD", "AA AAAAA AB", "AAA AB BCD"]
+)
 
-
-solution("321")
+solution(
+["CCC", "BCDF"], ["XXXX"], ["BCDF CCC", "XXXX"])
