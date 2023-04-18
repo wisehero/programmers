@@ -22,6 +22,7 @@ def bfs1(root):
             q.append(cur_node.right)
     return visited
 
+
 # 그래프 순회 BFS
 def bfs2(graph, start_v):
     visited = [start_v]
