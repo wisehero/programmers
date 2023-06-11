@@ -1,10 +1,20 @@
-def solution(order):
+from itertools import permutations
+
+
+def solution(babbling):
     answer = 0
-    for i in range(len(order)):
-        if "americano" in order[i]:
-            answer += 4500
-        elif "cafelatte" in order[i]:
-            answer += 5000
-        else:
-            answer += 4500
+    can_speak = ["aya", "ye", "woo", "ma"]
+    word = []
+
+    for i in range(1, len(babbling)):
+        for j in permutations(can_speak, i):
+            word.append("".join(j))
+
+    for i in babbling:
+        if i in word:
+            answer += 1
+
     return answer
+
+
+solution(["ayaye", "uuuma", "ye", "yemawoo", "ayaa"])
