@@ -1,20 +1,18 @@
-from itertools import permutations
+def solution(quiz):
+    answer = []
 
+    for i in range(len(quiz)):
+        expression = quiz[i].split(" ")
+        operand1, operator, operand2, result = int(expression[0]), expression[1], int(expression[2]), int(expression[4])
+        if operator == "+":
+            if operand1 + operand2 == result:
+                answer.append("O")
+            else:
+                answer.append("X")
 
-def solution(babbling):
-    answer = 0
-    can_speak = ["aya", "ye", "woo", "ma"]
-    word = []
-
-    for i in range(1, len(babbling)):
-        for j in permutations(can_speak, i):
-            word.append("".join(j))
-
-    for i in babbling:
-        if i in word:
-            answer += 1
-
+        else:
+            if operand1 - operand2 == result:
+                answer.append("O")
+            else:
+                answer.append("X")
     return answer
-
-
-solution(["ayaye", "uuuma", "ye", "yemawoo", "ayaa"])
