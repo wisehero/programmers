@@ -1,18 +1,17 @@
-def solution(quiz):
-    answer = []
-
-    for i in range(len(quiz)):
-        expression = quiz[i].split(" ")
-        operand1, operator, operand2, result = int(expression[0]), expression[1], int(expression[2]), int(expression[4])
-        if operator == "+":
-            if operand1 + operand2 == result:
-                answer.append("O")
-            else:
-                answer.append("X")
-
+def solution(my_string):
+    numbers = []
+    n = ""
+    for s in my_string:
+        if not s.isdigit():
+            if len(n) > 0:
+                numbers.append(int(n))
+                n = ""
         else:
-            if operand1 - operand2 == result:
-                answer.append("O")
-            else:
-                answer.append("X")
-    return answer
+            n += s
+    if len(n) != 0:
+        numbers.append(int(n))
+
+    if len(numbers) == 0:
+        return 0
+
+    return sum(numbers)
