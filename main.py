@@ -1,6 +1,9 @@
-def solution(hp):
-    answer = 0
-    for ant in [5, 3, 1]:
-        d, hp = divmod(hp, ant)
-        answer += d
-    return answer
+def solution(n):
+    piece = 6
+    while True:
+        if piece // n >= 1 and piece % n == 0:
+            return piece // 6
+        else:
+            piece += 6
+
+
