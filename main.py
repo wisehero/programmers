@@ -1,14 +1,6 @@
-def minimum_deletion_cost(S, C):
-    z = list(zip(S, C))
+def solution(i, j, k):
     answer = 0
-
-    for i in range(len(z) - 1):
-        if z[i][0] == z[i+1][0]:
-            answer += min(z[i][1], z[i+1][1])
-
-    print(answer)
-
-# Example usage
-S = "ababa"
-C = [10,5,10,5,10]
-minimum_deletion_cost(S, C)
+    k = str(k)
+    for n in range(i,j+1):
+        answer += str(n).count(k)
+    return answer
