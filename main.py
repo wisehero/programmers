@@ -1,12 +1,5 @@
-def solution(my_str, n):
-    answer = []
-    index = 1
-    start = 0
-    while True :
-        if n * index >= len(my_str):
-            answer.append(my_str[start:])
-            break
-        answer.append(my_str[start:n * index])
-        start = n * index
-        index += 1
+def solution(array):
+    answer = 0
+    for i in array:
+        answer += str(i).count("7")
     return answer
