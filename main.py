@@ -1,9 +1,15 @@
-def solution(my_string):
-    answer = []
-    my_string = list(my_string)
-    while my_string:
-        c = my_string.pop(0)
-        if c not in answer:
-            answer.append(c)
+from collections import Counter
 
-    return "".join(answer)
+
+def solution(array):
+    counter = Counter(array)
+    frequent = max(counter.values())
+    c = 0
+    for i in set(array):
+        if counter[i] == frequent:
+            c += 1
+
+    if c > 1:
+        return -1
+    else:
+        return counter.most_common()[0][0]
