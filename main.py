@@ -1,11 +1,9 @@
-def solution(arr1, arr2):
+def solution(my_string):
     answer = []
-    li = []
-    row , col = len(arr1), len(arr1[0])
-    for i in range(row):
-        for j in range(col):    
-            li.append(arr1[i][j] + arr2[i][j])            
-            if j == col-1:
-                answer.append(li)
-                li = []
-    return answer
+    my_string = list(my_string)
+    while my_string:
+        c = my_string.pop(0)
+        if c not in answer:
+            answer.append(c)
+
+    return "".join(answer)
