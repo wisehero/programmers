@@ -1,15 +1,15 @@
-from collections import Counter
+t = int(input())
+d = {}
+for _ in range(t):
+    name, record = input().split(" ")
+    d[name] = record
 
+in_company = []
+for key in d.keys():
+    if d[key] == "enter":
+        in_company.append(key)
 
-def solution(array):
-    counter = Counter(array)
-    frequent = max(counter.values())
-    c = 0
-    for i in set(array):
-        if counter[i] == frequent:
-            c += 1
+in_company.sort(reverse=True)
 
-    if c > 1:
-        return -1
-    else:
-        return counter.most_common()[0][0]
+for emp in in_company:
+    print(emp)
