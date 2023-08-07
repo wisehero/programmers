@@ -24,7 +24,7 @@ def bfs1(root):
 
 
 # 그래프 순회 BFS
-def bfs2(graph, start_v):
+def bfs2(graph, start_v):  # start_v = 시작 정점
     visited = [start_v]
     queue = deque(start_v)
     while queue:
