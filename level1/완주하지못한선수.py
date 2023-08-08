@@ -14,7 +14,7 @@ def solution(participant, completion):
     for c in completion:
         if c in done:
             done[c] += 1
-            
+
     for p in participant:
         if done[p] <= 0:
             return p
