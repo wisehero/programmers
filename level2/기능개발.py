@@ -1,25 +1,25 @@
 from collections import deque
 
 
-def solution(priorities, location):
-    answer = 0
+def solution(progresses, speeds):
+    answer = []
 
-    pi = []
-    count = 1
-    for i, p in enumerate(priorities):
-        pi.append([p, i])
+    ps = []
 
-    pi = deque(pi)
-    while pi:
-        p, i = pi.popleft()
+    for p, s in zip(progresses, speeds):
+        ps.append([p, s])
+    progresses = deque(ps)
 
-        if p == max(priorities):
-            if i == location:
-                return count
-            else:
-                count += 1
-            priorities.remove(max(priorities))
-        else:
-            pi.append([p, i])
+    count = 0
+    while progresses:
+        for i in range(len(progresses)):
+            progresses[i][0] += progresses[i][1]
+
+        while progresses and progresses[0][0] >= 100:
+            count += 1
+            progresses.popleft()
+        if count >= 1:
+            answer.append(count)
+            count = 0
 
     return answer
