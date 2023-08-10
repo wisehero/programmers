@@ -1,21 +1,27 @@
-gpa = 0  # 평점
-hakjum = 0
-d = {
-    "A+": 4.5,
-    "A0": 4.0,
-    "B+": 3.5,
-    "B0": 3.0,
-    "C+": 2.5,
-    "C0": 2.0,
-    "D+": 1.5,
-    "D0": 1.0,
-    "F": 0.0
-}
+from collections import deque
 
-for _ in range(20):
-    subject, x, y = input().split(" ")
-    if y != "P":
-        hakjum += float(x)
-        gpa += float(x) * d[y]
 
-print(round(gpa / hakjum, 6))
+def solution(priorities, location):
+    answer = 0
+
+    pi = []
+    count = 1
+    for i, p in enumerate(priorities):
+        pi.append([p, i])
+
+    pi = deque(pi)
+    while pi:
+        p, i = pi.popleft()
+
+        if p == max(priorities):
+            if i == location:
+                return count
+            else:
+                count += 1
+            priorities.remove(max(priorities))
+        else:
+            pi.append([p, i])
+
+    return answer
+
+print(solution([1, 1, 9, 1, 1, 1], 0))
