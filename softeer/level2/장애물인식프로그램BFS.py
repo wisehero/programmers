@@ -13,11 +13,13 @@ direction = [
 
 
 def bfs(x, y):
+    # 처음에 들어온 좌표 위치 처리해주고
     q = deque()
     q.append([x, y])
     visited[x][y] = True
     count = 1
 
+    # 이제 다음 것들(상, 하, 좌, 우)을 해결해주면 되는거야
     while q:
         row, col = q.popleft()
         for i in range(4):
