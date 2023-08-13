@@ -1,9 +1,17 @@
-n = int(input())
-arr = list(map(int, input().split(" ")))
+li = []
+for i in range(8):
+    score = int(input())
+    li.append([i + 1, score])
 
-arr = set(arr)
-arr = list(arr)
-arr.sort()
+li.sort(key=lambda x: (x[1], x[0]))
 
-for i in arr:
-    print(i, end=' ')
+result = []
+s = 0
+for i, score in li[-5:]:
+    s += score
+    result.append(i)
+
+result.sort()
+print(s)
+for r in result:
+    print(r, end=' ')
