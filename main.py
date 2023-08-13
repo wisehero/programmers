@@ -1,17 +1,14 @@
-li = []
-for i in range(8):
-    score = int(input())
-    li.append([i + 1, score])
+n = input()
+m = input()
 
-li.sort(key=lambda x: (x[1], x[0]))
+result = 0
+i = 0
 
-result = []
-s = 0
-for i, score in li[-5:]:
-    s += score
-    result.append(i)
+while i < len(n):
+    if n[i:i + len(m)] == m:
+        i += len(m)
+        result += 1
+    else:
+        i += 1
 
-result.sort()
-print(s)
-for r in result:
-    print(r, end=' ')
+print(result)
