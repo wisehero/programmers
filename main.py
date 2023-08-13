@@ -1,27 +1,9 @@
-from collections import deque
+n = int(input())
+arr = list(map(int, input().split(" ")))
 
+arr = set(arr)
+arr = list(arr)
+arr.sort()
 
-def solution(priorities, location):
-    answer = 0
-
-    pi = []
-    count = 1
-    for i, p in enumerate(priorities):
-        pi.append([p, i])
-
-    pi = deque(pi)
-    while pi:
-        p, i = pi.popleft()
-
-        if p == max(priorities):
-            if i == location:
-                return count
-            else:
-                count += 1
-            priorities.remove(max(priorities))
-        else:
-            pi.append([p, i])
-
-    return answer
-
-print(solution([1, 1, 9, 1, 1, 1], 0))
+for i in arr:
+    print(i, end=' ')
