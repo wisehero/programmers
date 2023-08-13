@@ -1,14 +1,17 @@
-n = input()
-m = input()
+n = int(input())
 
-result = 0
-i = 0
+cards = [x for x in range(n, 0, -1)]
+left_card = []
 
-while i < len(n):
-    if n[i:i + len(m)] == m:
-        i += len(m)
-        result += 1
+flag = True
+while len(cards) != 1:
+    if flag:
+        left_card.append(cards.pop())
+        flag = False
     else:
-        i += 1
+        cards = [cards.pop()] + cards
+        flag = True
 
-print(result)
+for i in left_card:
+    print(i, end=' ')
+print(cards[0])
