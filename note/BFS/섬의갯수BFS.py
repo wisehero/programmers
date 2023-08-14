@@ -1,5 +1,12 @@
 from collections import deque
 
+graph = [
+    ["1", "1", "1", "1", "0"],
+    ["1", "1", "0", "1", "0"],
+    ["1", "1", "0", "0", "0"],
+    ["0", "0", "0", "0", "0"]
+]
+
 
 def numIslands(graph):
     number_of_islands = 0
@@ -22,13 +29,15 @@ def numIslands(graph):
                 next_x = cur_x + direction[i][0]
                 next_y = cur_y + direction[i][1]
                 if 0 <= next_x < m and 0 <= next_y < n:
-                    if graph[i][j] == "1" and not visited[i][j]:
+                    if graph[next_x][next_y] == "1" and not visited[next_x][next_y]:
                         visited[next_x][next_y] = True
                         queue.append([next_x, next_y])
 
     for i in range(m):
         for j in range(n):
+            # 땅이면서 방문을 하지 않았을 경우
             if graph[i][j] == "1" and not visited[i][j]:
                 bfs(i, j)
+                number_of_islands += 1
 
     return number_of_islands
