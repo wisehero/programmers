@@ -1,14 +1,16 @@
-import math
-
 n, m = map(int, input().split(" "))
+mA = []
+mB = []
 
-maximum = n * m
-result = 0
-while True:
-    if math.ceil(maximum / n) == m:
-        result = maximum
-        maximum -= 1
-    else:
-        break
+row = max(n, m)
 
-print(result)
+for _ in range(row):
+    mA.append(list(map(int, input().split(" "))))
+for _ in range(row):
+    mB.append(list(map(int, input().split(" "))))
+
+for i in range(n):
+    for j in range(m):
+        mA[i][j] += mB[i][j]
+        print(mA[i][j], end=' ')
+    print()
