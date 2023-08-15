@@ -1,7 +1,5 @@
 def solution(n, lost, reserve):
     answer = n
-    lost.sort()
-    reserve.sort()
     for i in range(len(reserve)):
         if reserve[i] in lost:
             lost.remove(reserve[i])
