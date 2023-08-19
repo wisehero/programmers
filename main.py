@@ -1,11 +1,11 @@
-cash = int(input())
+def solution(picture, k):
+    answer = []
+    for i in range(len(picture)):
+        picture[i] = list(picture[i])
+        pk = ''
+        for j in range(len(picture[i])):
+            pk += picture[i][j] * k
 
-n = int(input())
-for _ in range(n):
-    a, b = map(int, input().split(" "))
-    cash -= a * b
-
-if cash == 0:
-    print("Yes")
-else:
-    print("No")
+        for _ in range(k):
+            answer.append(pk)
+    return answer
