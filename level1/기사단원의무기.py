@@ -1,24 +1,22 @@
 def solution(number, limit, power):
-    answer = 0
-    weapons = []
-    for i in range(1, number + 1):
+    weapons = [1]
+    for i in range(2, number + 1):
         count = 0
-        if i == 1:
-            weapons.append(1)
-            continue
-        else:
-            for j in range(1, int(i ** (1 / 2)) + 1):
-                if i % j == 0:
-                    if j == i // j:
-                        count += 1
-                    else:
-                        count += 2
 
-        if count > limit:
-            weapons.append(power)
-        else:
-            weapons.append(count)
+        # 약수의 개수를 구함에 있어서 시간복잡도를 줄이는 방법
+        for j in range(1, int(i ** (1 / 2)) + 1):
+            if i % j == 0:
+                count += 1
+                if j ** 2 != i:
+                    count += 1
+
+            if count > limit:
+                count = power
+                break
+        weapons.append(count)
+
     answer = sum(weapons)
     return answer
+
 
 solution(10, 3, 2)
