@@ -7,7 +7,7 @@ def canVisitAllRooms(rooms):
     def dfs(v):
         visited.add(v)
         for next_v in rooms[v]:
-            if next_v in visited:
+            if next_v not in visited:
                 dfs(next_v)
 
     dfs(0)
