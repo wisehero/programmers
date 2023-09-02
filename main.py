@@ -1,9 +1,40 @@
-while True:
-    numbers = list(map(int, input().split()))
-    numbers.sort()
-    if numbers[0] == 0 and numbers[1] == 0 and numbers[2] == 0:
-        break
-    if pow(numbers[0], 2) + pow(numbers[1], 2) == pow(numbers[2], 2):
-        print("right")
-    else:
-        print("wrong")
+from collections import defaultdict, deque
+
+n, m = map(int, input().split())
+
+dic = dict()
+result = dict()
+for i in range(1, n + 1):
+    dic[i] = []
+
+print(dic)
+for _ in range(m):
+    key, friend = map(int, input().split(" "))
+    if friend not in dic[key] and key not in dic[friend]:
+        dic[key].append(friend)
+        dic[friend].append(key)
+
+
+def bfs(start):
+    visited = [start]
+    count = 0
+    point = 0
+    q = deque()
+    q.append([start, point])
+
+    while q:
+        cur_node, point = q.popleft()
+        for v in dic[cur_node]:
+            if v not in visited:
+                count += point + 1
+                visited.append(v)
+                q.append([v, point + 1])
+    return count
+
+
+for key in dic.keys():
+    result[key] = bfs(key)
+
+r = sorted(result.items(), key=lambda x: (x[1], x[0]))
+print(r)
+print(r[0][0])
