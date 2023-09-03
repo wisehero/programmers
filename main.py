@@ -1,19 +1,11 @@
-def roundV2(num):
-    if num - int(num) >= 0.5:
-        return int(num) + 1
-    else:
-        return int(num)
+def num(m, n, x, y):
+    while x <= m * n: # 최대 범위
+        if (x-y) % n == 0: # 나머지로 확인
+            return x
+        x += m
+    return -1
 
-
-n = int(input())
-
-if n == 0:
-    print(0)
-    exit()
-else:
-    li = []
-    for _ in range(n):
-        li.append(int(input()))
-    li.sort()
-    t = roundV2(n * 0.15)
-    print(roundV2(sum(li[t:len(li) - t]) / len(li[t:len(li) - t])))
+t = int(input())
+for i in range(t):
+    m, n, x, y = map(int, input().split())
+    print(num(m, n, x, y))
