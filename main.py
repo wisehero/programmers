@@ -1,11 +1,25 @@
-def num(m, n, x, y):
-    while x <= m * n: # 최대 범위
-        if (x-y) % n == 0: # 나머지로 확인
-            return x
-        x += m
-    return -1
+def solution(keymap, targets):
+    answer = []
 
-t = int(input())
-for i in range(t):
-    m, n, x, y = map(int, input().split())
-    print(num(m, n, x, y))
+    for target in targets:
+        t = True
+        amount = 0
+        for i in range(len(target)):
+            count = 999
+            for j in range(len(keymap)):
+                if target[i] in keymap[j]:
+                    count = min(keymap[j].index(target[i]) + 1, count)
+                    t = True
+                else:
+                    t = False
+            amount += count
+
+        if t:
+            answer.append(amount)
+        else:
+            answer.append(-1)
+
+    return answer
+
+
+solution(["AGZ", "BSSS"], ["ASA","BGZ"])
