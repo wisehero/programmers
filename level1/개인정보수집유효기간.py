@@ -1,18 +1,25 @@
+# 모든 달은 28일까지 있다.
 def solution(today, terms, privacies):
     answer = []
+    terms_dic = {}
+    for term in terms:
+        a, b = term.split(" ")
+        terms_dic[a] = int(b) * 28
 
     year, month, day = today.split(".")
-    today = int(year) * 12 * 28 + int(month) * 28 + int(day)
 
-    terms = {i[:1]: int(i[2:]) * 28 for i in terms}
+    today = int(day) + (int(month) * 28) + (int(year) * 28 * 12)
 
-    for i, p in enumerate(privacies):
-        y, m, d = p.split(".")
-        d, c = d.split()
+    for index, privacy in enumerate(privacies):
+        date, t = privacy.split(" ")
+        date_year, date_month, date_day = date.split(".")
 
-        p = int(y) * 12 * 28 + int(m) * 28 + int(d)
-        if p + terms[c] <= today:
-            answer.append(i + 1)
+        date_time = int(date_day) + (int(date_month) * 28) + (int(date_year) * 28 * 12)
+        date_time += terms_dic[t]
+
+        if date_time <= today:
+            answer.append(privacies.index(privacy) + 1)
+
     return answer
 
 
