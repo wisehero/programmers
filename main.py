@@ -1,20 +1,29 @@
-from itertools import combinations
+def solution(storey):
+    answer = 0
+    storey = list(map(int, str(storey)))
 
-t = int(input())
-for _ in range(t):
-    n = int(input())
-    saram = list(input().split())
-    if n > 32:
-        print(0)
-    else:
-        answer = []
-        cases = list(combinations(saram, 3))
+    while storey:
+        s = storey.pop()
 
-        for case in cases:
-            distance = 0
-            for i in range(2):
-                for j in range(i + 1, 3):
-                    distance += len(set(case[i]).difference(case[j]))
-            answer.append(distance)
+        if len(storey) == 0:
+            if s > 5:
+                answer += 10 - s + 1
+            else:
+                answer += s
+            break
 
-        print(min(answer))
+        if s > 5:
+            answer += 10 - s
+            storey[-1] += 1
+        elif s < 5:
+            answer += s
+        else:
+            if storey[-1] >= 5:
+                answer += 5
+                storey[-1] += 1
+            else:
+                answer += 5
+
+    return answer
+
+print(solution(16))
