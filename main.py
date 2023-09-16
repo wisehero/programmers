@@ -1,29 +1,19 @@
-def solution(storey):
+import bisect
+
+
+def solution(A, B):
     answer = 0
-    storey = list(map(int, str(storey)))
 
-    while storey:
-        s = storey.pop()
+    A.sort()
 
-        if len(storey) == 0:
-            if s > 5:
-                answer += 10 - s + 1
-            else:
-                answer += s
-            break
-
-        if s > 5:
-            answer += 10 - s
-            storey[-1] += 1
-        elif s < 5:
-            answer += s
-        else:
-            if storey[-1] >= 5:
-                answer += 5
-                storey[-1] += 1
-            else:
-                answer += 5
+    before = 0
+    for number in B:
+        now = bisect.bisect_left(A, number)
+        if before != now:
+            answer += 1
+            before = now
 
     return answer
 
-print(solution(16))
+
+print(solution([5, 1, 3, 7], [2, 2, 6, 8]))
