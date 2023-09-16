@@ -1,19 +1,15 @@
-def solution(n):
+def solution(hp):
     answer = 0
 
-    dp = [0] * 101
-    dp[1] = 1
-    dp[2] = 2
-
-    for i in range(3, 101):
-        dp[i] = dp[i - 1] + 1
-
-        while dp[i] % 3 == 0 or str(dp[i]).count("3"):
-            dp[i] += 1
-
-    answer = dp[n]
+    while hp:
+        if hp >= 5:
+            answer += hp // 5
+            hp %= 5
+        elif 3 <= hp < 5:
+            answer += hp // 3
+            hp %= 3
+        else:
+            answer += hp
+            hp %= 1
 
     return answer
-
-
-solution(15)
