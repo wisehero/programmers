@@ -1,19 +1,19 @@
-import bisect
-
-
-def solution(A, B):
+def solution(n):
     answer = 0
 
-    A.sort()
+    dp = [0] * 101
+    dp[1] = 1
+    dp[2] = 2
 
-    before = 0
-    for number in B:
-        now = bisect.bisect_left(A, number)
-        if before != now:
-            answer += 1
-            before = now
+    for i in range(3, 101):
+        dp[i] = dp[i - 1] + 1
+
+        while dp[i] % 3 == 0 or str(dp[i]).count("3"):
+            dp[i] += 1
+
+    answer = dp[n]
 
     return answer
 
 
-print(solution([5, 1, 3, 7], [2, 2, 6, 8]))
+solution(15)
