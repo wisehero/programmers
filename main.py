@@ -1,11 +1,21 @@
-def solution(x):
-    answer = True
-    str_x = str(x)
-    n = 0
+def solution(s):
+    answer = ''
 
-    for s in str_x:
-        n += int(s)
+    d = {"one": "1", "two": "2", "three": "3", "four": "4", "five": "5", "six": "6", "seven": "7",
+         "eight": "8", "nine": "9", "zero": "0"}
+    word = ''
 
-    if x % n != 0:
-        answer = False
-    return answer
+    for a in s:
+        if word in d:
+            answer += d[word]
+            word = ''
+
+        if a.isdigit():
+            answer += a
+        else:
+            word += a
+
+    if word:
+        answer += d[word]
+
+    return int(answer)
