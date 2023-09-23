@@ -8,3 +8,15 @@ def solution(number):
                 if number[i] + number[j] + number[k] == 0:
                     answer += 1
     return answer
+
+
+from itertools import combinations
+
+
+def solutionV2(number):
+    answer = 0
+
+    for case in list(combinations(number, 3)):
+        if sum(case) == 0:
+            answer += 1
+    return answer
