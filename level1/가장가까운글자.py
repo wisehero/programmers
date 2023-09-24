@@ -1,18 +1,11 @@
 def solution(s):
     answer = []
     dic = dict()
-
-    for i, c in enumerate(s):
-        if c not in list(dic.keys()):
-            dic[c] = i
+    for i in range(len(s)):
+        if s[i] not in dic:
             answer.append(-1)
         else:
-            answer.append(i - dic[c])
-            dic[c] = i
+            answer.append(i - dic[s[i]])
+        dic[s[i]] = i
 
-    print(dic)
     return answer
-
-
-s = "banana"
-print(solution(s))
