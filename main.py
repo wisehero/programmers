@@ -1,21 +1,14 @@
-def solution(s):
-    answer = ''
+def solution(k, score):
+    answer = []
+    rank = []
 
-    d = {"one": "1", "two": "2", "three": "3", "four": "4", "five": "5", "six": "6", "seven": "7",
-         "eight": "8", "nine": "9", "zero": "0"}
-    word = ''
+    for i in range(len(score)):
+        rank.append(score[i])
+        rank.sort()
 
-    for a in s:
-        if word in d:
-            answer += d[word]
-            word = ''
-
-        if a.isdigit():
-            answer += a
+        if len(rank) < k:
+            answer.append(min(rank))
         else:
-            word += a
+            answer.append(min(rank[-k:]))
 
-    if word:
-        answer += d[word]
-
-    return int(answer)
+    return answer
