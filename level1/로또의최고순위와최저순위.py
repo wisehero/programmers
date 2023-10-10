@@ -1,28 +1,24 @@
 def solution(lottos, win_nums):
     answer = []
-    if set(lottos) == set(win_nums):
-        return [1, 1]
-    if lottos.count(0) == 6:
-        return [1, 6]
+    rank = {6: 1, 5: 2, 4: 3, 3: 4, 2: 5}
 
-    max_rank = 7
-    min_rank = 7
-    # 0이 전부 다 맞춘 숫자가 아닐 경우
+    cnt = 0
+    best = 0
     for i in range(len(lottos)):
         if lottos[i] in win_nums:
-            min_rank -= 1
+            cnt += 1
+        elif lottos[i] == 0:
+            best += 1
 
-    # 0이 전부 다 맞춘 숫자일 경우
-    for i in range(len(lottos)):
-        if lottos[i] in win_nums:
-            max_rank -= 1
+    best_cnt = cnt + best
 
-        if lottos[i] == 0:
-            max_rank -= 1
+    if best_cnt in rank:
+        answer.append(rank[best_cnt])
+    else:
+        answer.append(6)
 
-    # 0도 없고 전부 다 다른 숫자일 경우
-    if max_rank == 7 and min_rank == 7:
-        return [6, 6]
-
-    answer = [max_rank, min_rank]
+    if cnt in rank:
+        answer.append(rank[cnt])
+    else:
+        answer.append(6)
     return answer
