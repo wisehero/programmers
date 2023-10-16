@@ -1,51 +1,21 @@
-def solution(park, routes):
-    answer = []
-    obs = []
+n, m = map(int, input().split())
+A = list(map(int, input().split()))
+S = [0] * n
+C = [0] * m
+S[0] = A[0]
+answer = 0
 
-    start = []
-    for i in range(len(park)):
-        for j in range(len(park[0])):
-            if park[i][j] == "S":
-                start.append(i)
-                start.append(j)
-            elif park[i][j] == "X":
-                obs.append([i, j])
+for i in range(1, n):
+    S[i] = S[i-1] + A[i]
 
-    for r in routes:
-        d, m = r.split(" ")
-        m = int(m)
+for i in range(n):
+    remainder = S[i] % m
+    if remainder == 0 :
+        answer += 1
+    C[remainder] += 1
 
-        if d == "N" and 0 <= start[0] - m < len(park):
-            origin = start[0]
-            for i in range(m):
-                start[0] -= 1
-                if start in obs:
-                    start[0] = origin
-                    break
-        elif d == "S" and 0 <= start[0] + m < len(park):
-            origin = start[0]
-            for i in range(m):
-                start[0] += 1
-                if start in obs:
-                    start[0] = origin
-                    break
-        elif d == "E" and 0 <= start[1] + m < len(park[0]):
-            origin = start[1]
-            for i in range(m):
-                start[1] += 1
-                if start in obs:
-                    start[1] = origin
-                    break
-        elif d == "W" and 0 <= start[1] - m < len(park[0]):
-            origin = start[1]
-            for i in range(m):
-                start[1] -= 1
-                if start in obs:
-                    start[1] = origin
-                    break
+for i in range(m):
+    if C[i] > 1:
+        answer += (C[i] * (C[i] - 1) // 2)
 
-    answer = start
-
-    return answer
-
-solution(["OSO", "OOO", "OXO", "OOO"], ["E 2", "S 3", "W 1"])
+print(answer)
