@@ -1,6 +1,3 @@
-from collections import deque
-
-
 def solution(s):
     answer = []
     s = s[2:-2].split("},{")
