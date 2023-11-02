@@ -1,27 +1,15 @@
 from itertools import product
 
-vowel = []
-
-for i in list(product("AEIOU", repeat=1)):
-    vowel.append("".join(i))
-
-for i in list(product("AEIOU", repeat=2)):
-    vowel.append("".join(i))
-
-for i in list(product("AEIOU", repeat=3)):
-    vowel.append("".join(i))
-
-for i in list(product("AEIOU", repeat=4)):
-    vowel.append("".join(i))
-
-for i in list(product("AEIOU", repeat=5)):
-    vowel.append("".join(i))
-
-vowel.sort()
-
 
 def solution(word):
-    answer = vowel.index(word) + 1
+    answer = 0
+    vowel = list("AEIOU")
+    dic = []
+    for i in range(1, 6):
+        for case in list(product(vowel, repeat=i)):
+            dic.append("".join(case))
+
+    dic.sort()
+
+    answer = dic.index(word) + 1
     return answer
-
-
