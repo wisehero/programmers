@@ -1,5 +1,4 @@
 def solution(clothes):
-    answer = 0
     cloths = {}
 
     for name, kind in clothes:
