@@ -1,13 +1,36 @@
-arr = []
 n = int(input())
-for _ in range(n):
-    li = list(input().split())
-    li[1] = int(li[1])
-    li[2] = int(li[2])
-    li[3] = int(li[3])
-    arr.append(li)
+m = [list(input()) for _ in range(n)]
 
-arr.sort(key=lambda x: (x[3], x[2], x[1]))
-print(arr[-1][0])
-print(arr[0][0])
+w = 0
+h = 0
 
+for line in m:
+    cnt = 0
+    for i in range(len(line)):
+        if line[i] == ".":
+            cnt += 1
+        else:
+            if cnt >= 2:
+                w += 1
+            cnt = 0
+
+    if cnt >= 2:
+        w += 1
+
+for i in range(len(m)):
+    cnt = 0
+    for j in range(len(m)):
+        if m[j][i] == ".":
+            cnt += 1
+        else:
+            if cnt >= 2:
+                h += 1
+            cnt = 0
+
+    if cnt >= 2:
+        h += 1
+
+
+
+
+print(w, h)
