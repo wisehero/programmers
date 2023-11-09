@@ -1,36 +1,21 @@
-n = int(input())
-m = [list(input()) for _ in range(n)]
+from collections import deque
 
-w = 0
-h = 0
+board = list(input())
+m = len(board)
 
-for line in m:
-    cnt = 0
-    for i in range(len(line)):
-        if line[i] == ".":
-            cnt += 1
-        else:
-            if cnt >= 2:
-                w += 1
-            cnt = 0
+for i in range(m - 3):
+    if "".join(board[i:i + 4]) == "XXXX":
+        board[i] = "A"
+        board[i + 1] = "A"
+        board[i + 2] = "A"
+        board[i + 3] = "A"
 
-    if cnt >= 2:
-        w += 1
+for i in range(m - 1):
+    if "".join(board[i:i + 2]) == "XX":
+        board[i] = "B"
+        board[i + 1] = "B"
 
-for i in range(len(m)):
-    cnt = 0
-    for j in range(len(m)):
-        if m[j][i] == ".":
-            cnt += 1
-        else:
-            if cnt >= 2:
-                h += 1
-            cnt = 0
-
-    if cnt >= 2:
-        h += 1
-
-
-
-
-print(w, h)
+if "X" in board:
+    print(-1)
+else:
+    print("".join(board))
