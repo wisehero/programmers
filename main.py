@@ -1,21 +1,11 @@
-from collections import deque
+from collections import Counter
 
-board = list(input())
-m = len(board)
+n = int(input())
+arr = []
+for _ in range(n):
+    arr.append(input())
 
-for i in range(m - 3):
-    if "".join(board[i:i + 4]) == "XXXX":
-        board[i] = "A"
-        board[i + 1] = "A"
-        board[i + 2] = "A"
-        board[i + 3] = "A"
-
-for i in range(m - 1):
-    if "".join(board[i:i + 2]) == "XX":
-        board[i] = "B"
-        board[i + 1] = "B"
-
-if "X" in board:
-    print(-1)
-else:
-    print("".join(board))
+c = Counter(arr)
+c = list(c.items())
+c.sort(key=lambda x: (-x[1], x[0]))
+print(c[0][0])
