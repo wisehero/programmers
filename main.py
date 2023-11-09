@@ -1,21 +1,13 @@
-n, m = map(int, input().split())
-A = list(map(int, input().split()))
-S = [0] * n
-C = [0] * m
-S[0] = A[0]
-answer = 0
+arr = []
+n = int(input())
+for _ in range(n):
+    li = list(input().split())
+    li[1] = int(li[1])
+    li[2] = int(li[2])
+    li[3] = int(li[3])
+    arr.append(li)
 
-for i in range(1, n):
-    S[i] = S[i-1] + A[i]
+arr.sort(key=lambda x: (x[3], x[2], x[1]))
+print(arr[-1][0])
+print(arr[0][0])
 
-for i in range(n):
-    remainder = S[i] % m
-    if remainder == 0 :
-        answer += 1
-    C[remainder] += 1
-
-for i in range(m):
-    if C[i] > 1:
-        answer += (C[i] * (C[i] - 1) // 2)
-
-print(answer)
