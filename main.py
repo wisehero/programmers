@@ -1,14 +1,28 @@
-def solution(wallpaper):
+def solution(today, terms, privacies):
     answer = []
-    a, b, c, d = 51, 51, 0, 0
 
-    for i in range(len(wallpaper)):
-        for j in range(len(wallpaper[i])):
-            if wallpaper[i][j] == "#":
-                a = min(i, a)
-                b = min(j, b)
-                c = max(i + 1, c)
-                d = max(j + 1, d)
+    y, m, d = today.split(".")
+    y = 28 * 12 * int(y)
+    m = 28 * int(m)
+    d = int(d)
 
-    answer = [a, b, c, d]
+    today = y + m + d
+
+    dic = {}
+
+    for term in terms:
+        p, d = term.split(" ")
+        dic[p] = int(d) * 28
+
+    for i, privacy in enumerate(privacies):
+        date, policy = privacy.split(" ")
+        y, m, d = date.split(".")
+        y = 28 * 12 * int(y)
+        m = 28 * int(m)
+        d = int(d)
+
+        date = y + m + d + dic[policy]
+
+        if date <= today:
+            answer.append(i + 1)
     return answer
