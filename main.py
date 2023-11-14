@@ -1,11 +1,14 @@
-from collections import Counter
+def solution(wallpaper):
+    answer = []
+    a, b, c, d = 51, 51, 0, 0
 
-n = int(input())
-arr = []
-for _ in range(n):
-    arr.append(int(input()))
+    for i in range(len(wallpaper)):
+        for j in range(len(wallpaper[i])):
+            if wallpaper[i][j] == "#":
+                a = min(i, a)
+                b = min(j, b)
+                c = max(i + 1, c)
+                d = max(j + 1, d)
 
-c = Counter(arr)
-c = list(c.items())
-c.sort(key=lambda x: (-x[1], x[0]))
-print(c[0][0])
+    answer = [a, b, c, d]
+    return answer
