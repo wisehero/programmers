@@ -1,13 +1,18 @@
-t = int(input())
+import math
 
-for _ in range(t):
-    s = input()
-    score = 0
-    ans = 0
-    for i in range(len(s)):
-        if s[i] == "O":
-            score += 1
-            ans += score
-        else:
-            score = 0
-    print(ans)
+n = int(input())
+
+arr = list(map(int, input().split()))
+answer = 0
+for i in arr:
+    f = True
+    if i == 1:
+        continue
+    for j in range(2, int(math.sqrt(i)) + 1):
+        if i % j == 0:
+            f = False
+
+    if f:
+        answer += 1
+
+print(answer)
