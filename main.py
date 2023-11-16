@@ -1,5 +1,13 @@
-n = int(input())
+t = int(input())
 
-for i in range(1, n + 1):
-    s = " " * (n - i) + "*" * i
-    print(s)
+for _ in range(t):
+    s = input()
+    score = 0
+    ans = 0
+    for i in range(len(s)):
+        if s[i] == "O":
+            score += 1
+            ans += score
+        else:
+            score = 0
+    print(ans)
