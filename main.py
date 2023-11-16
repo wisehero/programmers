@@ -1,11 +1,14 @@
-from itertools import combinations
+n = int(input())
 
-n, m = map(int, input().split())
-arr = list(map(int, input().split()))
-ans = 0
-for case in list(combinations(arr, 3)):
-    amount = sum(case)
-    if amount <= m:
-        ans = max(ans, amount)
+for i in range(1, n + 1):
+    s = str(i)
+    a = i
 
-print(ans)
+    for j in range(len(s)):
+        a += int(s[j])
+
+    if a == n:
+        print(i)
+        break
+
+print(0)
