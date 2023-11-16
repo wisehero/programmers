@@ -1,18 +1,11 @@
-import math
+from itertools import combinations
 
-n = int(input())
-
+n, m = map(int, input().split())
 arr = list(map(int, input().split()))
-answer = 0
-for i in arr:
-    f = True
-    if i == 1:
-        continue
-    for j in range(2, int(math.sqrt(i)) + 1):
-        if i % j == 0:
-            f = False
+ans = 0
+for case in list(combinations(arr, 3)):
+    amount = sum(case)
+    if amount <= m:
+        ans = max(ans, amount)
 
-    if f:
-        answer += 1
-
-print(answer)
+print(ans)
