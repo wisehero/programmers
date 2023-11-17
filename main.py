@@ -1,25 +1,28 @@
-from collections import deque
+while True:
+    string = input()
+    if string == ".":
+        break
+    if string[-1] != ".":
+        print("no")
+        continue
 
-n, k = map(int, input().split())
+    string = list(string)
+    a = ''
+    while string:
+        s = string.pop(0)
+        if s in "()[]":
+            a += s
 
-arr = [x for x in range(1, n + 1)]
-ans = []
-arr = deque(arr)
+        if "()" in a:
+            a = a.replace("()", "")
+            if "[]" in a:
+                a = a.replace("[]", "")
+        if "[]" in a:
+            a = a.replace("[]", "")
+            if "()" in a:
+                a = a.replace("()", "")
 
-i = 1
-while arr:
-    e = arr.popleft()
-    if i % k == 0:
-        ans.append(e)
+    if a.strip() == '':
+        print("yes")
     else:
-        arr.append(e)
-    i += 1
-
-answer = '<'
-for i in range(len(ans)):
-    if i == len(ans) - 1:
-        answer += str(ans[i]) + ">"
-    else:
-        answer += str(ans[i]) + ", "
-
-print(answer)
+        print("no")
