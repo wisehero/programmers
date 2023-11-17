@@ -1,44 +1,25 @@
-import sys
 from collections import deque
 
-t = int(sys.stdin.readline())
-q = deque()
+n, k = map(int, input().split())
 
-while t:
-    command = sys.stdin.readline().rstrip()
+arr = [x for x in range(1, n + 1)]
+ans = []
+arr = deque(arr)
 
-    if command == "front":
-        if q:
-            print(q[0])
-        else:
-            print(-1)
-    elif command == "back":
-        if q:
-            print(q[-1])
-        else:
-            print(-1)
-    elif command == "pop_front":
-        if q:
-            print(q.popleft())
-        else:
-            print(-1)
-    elif command == "pop_back":
-        if q:
-            print(q.pop())
-        else:
-            print(-1)
-    elif command == "empty":
-        if q:
-            print(0)
-        else:
-            print(1)
-    elif command == "size":
-        print(len(q))
+i = 1
+while arr:
+    e = arr.popleft()
+    if i % k == 0:
+        ans.append(e)
     else:
-        c, n = command.split(" ")
-        if c == "push_back":
-            q.append(n)
-        else:
-            q.appendleft(n)
+        arr.append(e)
+    i += 1
 
-    t -= 1
+answer = '<'
+for i in range(len(ans)):
+    if i == len(ans) - 1:
+        answer += str(ans[i]) + ">"
+    else:
+        answer += str(ans[i]) + ", "
+
+print(answer)
