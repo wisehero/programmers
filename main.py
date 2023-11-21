@@ -1,16 +1,19 @@
-n, k = map(int, input().split())
+from collections import defaultdict
 
-arr = []
+n, m = map(int, input().split())
+
+n_set = set()
+m_set = set()
 for _ in range(n):
-    arr.append(int(input()))
+    n_set.add(input())
 
-arr = arr[::-1]
+for _ in range(m):
+    m_set.add(input())
 
-i = 0
-ans = 0
-while k != 0:
-    ans += k // arr[i]
-    k %= arr[i]
-    i += 1
+nm = n_set.intersection(m_set)
+nm = list(nm)
+nm.sort()
+print(len(nm))
+for a in nm:
+    print(a)
 
-print(ans)
