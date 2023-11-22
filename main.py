@@ -1,19 +1,27 @@
-from collections import defaultdict
+from collections import deque
 
-n, m = map(int, input().split())
+t = int(input())
 
-n_set = set()
-m_set = set()
-for _ in range(n):
-    n_set.add(input())
+for _ in range(t):
+    n, m = map(int, input().split())
 
-for _ in range(m):
-    m_set.add(input())
+    arr = list(map(int, input().split()))
+    q = []
+    for i in range(len(arr)):
+        q.append([i, arr[i]])
 
-nm = n_set.intersection(m_set)
-nm = list(nm)
-nm.sort()
-print(len(nm))
-for a in nm:
-    print(a)
+    q = deque(q)
 
+    priority = sorted(arr)
+
+    cnt = 0
+    while q:
+        p = q.popleft()
+        if p[1] == priority[-1]:
+            priority.pop()
+            cnt += 1
+            if p[0] == m:
+                print(cnt)
+                break
+        else:
+            q.append(p)
