@@ -1,41 +1,18 @@
-def solution(friends, gifts):
-    m = len(friends)
-    answer = [0] * m
-    arr = [[0] * m for _ in range(m)]
-    d = {}
-    present = {}
-    for i in range(m):
-        present[i] = [0, 0]
-    for friend in friends:
-        d[friend] = friends.index(friend)
+n, m = map(int, input().split())
 
-    for gift in gifts:
-        give, receivce = gift.split(" ")
-        i = d[give]
-        j = d[receivce]
-        if i != j:
-            arr[i][j] += 1
-        present[i][0] += 1
-        present[j][1] += 1
+i = 1
+name_num = {}
+num_name = {}
 
-    for i in range(m):
-        for j in range(m):
-            if arr[i][j] > arr[j][i]:
-                answer[i] += 1
+for _ in range(n):
+    a = input()
+    name_num[a] = i
+    num_name[i] = a
+    i += 1
 
-    print(answer)
-    for i in range(m):
-        for j in range(i, m):
-            if arr[i][j] == arr[j][i]:
-                if present[i][0] - present[i][1] < present[j][0] - present[j][1]:
-                    answer[j] += 1
-                elif present[i][0] - present[i][1] > present[j][0] - present[j][1]:
-                    answer[i] += 1
-
-    return answer
-
-
-print(solution(
-
-    ["joy", "brad", "alessandro", "conan", "david"],
-    ["alessandro brad", "alessandro joy", "alessandro conan", "david alessandro", "alessandro david"]))
+for _ in range(m):
+    a = input()
+    if a.isdigit():
+        print(num_name[int(a)])
+    else:
+        print(name_num[a])
