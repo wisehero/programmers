@@ -1,24 +1,22 @@
-d_x = {}
-d_y = {}
-for _ in range(3):
-    x, y = map(int, input().split())
-    if x in d_x:
-        d_x[x] += 1
-    else:
-        d_x[x] = 1
+from collections import deque
 
-    if y in d_y:
-        d_y[y] += 1
-    else:
-        d_y[y] = 1
-
+n, k = map(int, input().split())
+arr = list(range(1, n + 1))
+arr = deque(arr)
 ans = []
-for key in d_x.keys():
-    if d_x[key] == 1:
-        ans.append(key)
+i = 1
+while arr:
+    if i % k == 0:
+        ans.append(arr.popleft())
+    else:
+        arr.append(arr.popleft())
+    i += 1
 
-for key in d_y.keys():
-    if d_y[key] == 1:
-        ans.append(key)
+s = '<'
 
-print(*ans)
+for i, v in enumerate(ans):
+    if i != len(ans) - 1:
+        s += str(v) + ", "
+    else:
+        s += str(v) + ">"
+print(s)
