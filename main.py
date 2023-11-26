@@ -1,9 +1,14 @@
-n, m = map(int, input().split())
+from collections import Counter
+from math import ceil
 
-basket = [0] * (n + 1)
-for _ in range(m):
-    i, j, k = map(int, input().split())
-    for idx in range(i, j + 1):
-        basket[idx] = k
+arr = [0] * 10
+n = input()
 
-print(*basket[1:])
+for i in n:
+    arr[int(i)] += 1
+
+k = ceil((arr[6] + arr[9]) / 2)
+arr[6] = k
+arr[9] = k
+
+print(max(arr))
