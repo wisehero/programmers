@@ -1,23 +1,24 @@
-t = int(input())
-ans = 0
-for _ in range(t):
-    s = list(input())
+d_x = {}
+d_y = {}
+for _ in range(3):
+    x, y = map(int, input().split())
+    if x in d_x:
+        d_x[x] += 1
+    else:
+        d_x[x] = 1
 
-    f = True
-    stack = []
-    st = set()
-    while s:
-        one = s.pop()
+    if y in d_y:
+        d_y[y] += 1
+    else:
+        d_y[y] = 1
 
-        if stack and stack[-1] != one:
-            st.add(stack[-1])
-        if one in st:
-            f = False
-            break
-        stack.append(one)
+ans = []
+for key in d_x.keys():
+    if d_x[key] == 1:
+        ans.append(key)
 
-    if f:
-        ans += 1
+for key in d_y.keys():
+    if d_y[key] == 1:
+        ans.append(key)
 
-
-print(ans)
+print(*ans)
