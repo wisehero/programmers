@@ -1,22 +1,9 @@
-from collections import deque
+n, m = map(int, input().split())
 
-n, k = map(int, input().split())
-arr = list(range(1, n + 1))
-arr = deque(arr)
-ans = []
-i = 1
-while arr:
-    if i % k == 0:
-        ans.append(arr.popleft())
-    else:
-        arr.append(arr.popleft())
-    i += 1
+basket = [0] * (n + 1)
+for _ in range(m):
+    i, j, k = map(int, input().split())
+    for idx in range(i, j + 1):
+        basket[idx] = k
 
-s = '<'
-
-for i, v in enumerate(ans):
-    if i != len(ans) - 1:
-        s += str(v) + ", "
-    else:
-        s += str(v) + ">"
-print(s)
+print(*basket[1:])
