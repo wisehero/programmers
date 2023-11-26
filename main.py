@@ -1,18 +1,23 @@
-n, m = map(int, input().split())
+t = int(input())
+ans = 0
+for _ in range(t):
+    s = list(input())
 
-i = 1
-name_num = {}
-num_name = {}
+    f = True
+    stack = []
+    st = set()
+    while s:
+        one = s.pop()
 
-for _ in range(n):
-    a = input()
-    name_num[a] = i
-    num_name[i] = a
-    i += 1
+        if stack and stack[-1] != one:
+            st.add(stack[-1])
+        if one in st:
+            f = False
+            break
+        stack.append(one)
 
-for _ in range(m):
-    a = input()
-    if a.isdigit():
-        print(num_name[int(a)])
-    else:
-        print(name_num[a])
+    if f:
+        ans += 1
+
+
+print(ans)
