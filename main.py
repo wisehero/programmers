@@ -1,14 +1,24 @@
-from collections import Counter
-from math import ceil
+a = input()
+b = input()
+nums = ''
 
-arr = [0] * 10
-n = input()
+for i in range(len(a)):
+    nums += a[i]
+    nums += b[i]
 
-for i in n:
-    arr[int(i)] += 1
+temp = ''
+i = 0
+while True:
+    temp += str(int(nums[i]) + int(nums[i + 1]))[-1]
+    i += 1
 
-k = ceil((arr[6] + arr[9]) / 2)
-arr[6] = k
-arr[9] = k
+    if i == len(nums) - 1:
+        i = 0
+        nums = temp
+        temp = ''
 
-print(max(arr))
+    if len(nums) <= 2:
+        break
+print(nums)
+
+
