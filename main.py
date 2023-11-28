@@ -1,7 +1,10 @@
-from itertools import combinations, permutations
+t = int(input())
 
-n, m = map(int, input().split())
-arr = [x for x in range(1, n + 1)]
+arr = []
+for _ in range(t):
+    arr.append(int(input()))
 
-for case in list(permutations(arr, m)):
-    print(*case)
+arr.sort(reverse=True)
+
+for a in arr:
+    print(a)
