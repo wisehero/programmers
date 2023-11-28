@@ -1,24 +1,7 @@
-a = input()
-b = input()
-nums = ''
+from itertools import combinations, permutations
 
-for i in range(len(a)):
-    nums += a[i]
-    nums += b[i]
+n, m = map(int, input().split())
+arr = [x for x in range(1, n + 1)]
 
-temp = ''
-i = 0
-while True:
-    temp += str(int(nums[i]) + int(nums[i + 1]))[-1]
-    i += 1
-
-    if i == len(nums) - 1:
-        i = 0
-        nums = temp
-        temp = ''
-
-    if len(nums) <= 2:
-        break
-print(nums)
-
-
+for case in list(permutations(arr, m)):
+    print(*case)
