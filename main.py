@@ -1,22 +1,33 @@
-t = int(input())
+import sys
 
-for _ in range(t):
-    n = int(input())
-    clothes = []
-    for _ in range(n):
-        a, b = input().split()
-        clothes.append([a, b])
-    d = {}
+sys.setrecursionlimit(10 ** 6)
+n, m, r = map(int, sys.stdin.readline().split())
 
-    for name, kind in clothes:
-        if kind in d:
-            d[kind] += 1
-        else:
-            d[kind] = 1
+graph = [[] for _ in range(n + 1)]
 
-    ans = 1
+for _ in range(m):
+    a, b = map(int, sys.stdin.readline().split())
+    graph[a].append(b)
+    graph[b].append(a)
 
-    for key, value in d.items():
-        ans *= (value + 1)
+visited = [0] * (n + 1)
+cnt = 1
 
-    print(ans - 1)
+
+def dfs(graph, v, visited):
+    global cnt
+    visited[v] = cnt
+
+    for i in graph[v]:
+        if visited[i] == 0:
+            cnt += 1
+            dfs(graph, i, visited)
+
+
+for i in range(n + 1):
+    graph[i].sort()
+
+dfs(graph, r, visited)
+
+for i in range(1, n + 1):
+    print(visited[i])
