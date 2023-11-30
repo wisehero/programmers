@@ -1,14 +1,10 @@
-n, m = map(int, input().split())
+n = input()
 
-a = set()
+arr = []
 
-for _ in range(n):
-    a.add(input())
+for i in range(len(n)):
+    arr.append(n[i:])
 
-ans = 0
-for _ in range(m):
-    b = input()
-    if b in a:
-        ans += 1
+for a in sorted(arr):
+    print(a)
 
-print(ans)
