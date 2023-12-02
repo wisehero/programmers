@@ -1,10 +1,10 @@
-n = input()
+n = int(input())
+cards = list(range(1, n + 1))
+ans = []
+while cards:
+    ans.append(cards.pop(0))
+    if not cards:
+        break
+    cards.append(cards.pop(0))
 
-arr = []
-
-for i in range(len(n)):
-    arr.append(n[i:])
-
-for a in sorted(arr):
-    print(a)
-
+print(*ans)
