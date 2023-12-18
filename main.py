@@ -1,10 +1,12 @@
-n = int(input())
-cards = list(range(1, n + 1))
-ans = []
-while cards:
-    ans.append(cards.pop(0))
-    if not cards:
-        break
-    cards.append(cards.pop(0))
+t = int(input())
 
-print(*ans)
+for i in range(1, t + 1):
+    ans = 0
+    n = int(input())
+    for k in range(1, n + 1):
+        if k % 2 == 0:
+            ans -= k
+        else:
+            ans += k
+
+    print(f"#{i} {ans}")
