@@ -1,24 +1,10 @@
-"""
-n = 1 -> 1 = 1
-n = 2 -> 00, 11 = 2
-n = 3 -> 001, 100, 111 = 3
-n = 4 -> 0011, 0000, 1001, 1100, 1111 = 5
-n = 5 -> 00001, 00100, 10000, 00111, 11001, 11100,10011, 11111
-"""
+a, b = map(int, input().split())
+arr = list(map(int, input().split()))
 
-n = int(input())
-if n == 1:
-    print(1)
-    exit()
-elif n == 2:
-    print(2)
-    exit()
+answer = [sum(arr[:b])]  # O(n)
 
-dp = [0] * (n + 1)
-dp[1] = 1
-dp[2] = 2
+for i in range(len(arr) - b):
+    amount = answer[i] - arr[i] + arr[i + b]
+    answer.append(amount)
 
-for i in range(3, n + 1):
-    dp[i] = (dp[i - 1] + dp[i - 2]) % 15746
-
-print(dp[n])
+print(max(answer))
