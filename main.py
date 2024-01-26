@@ -1,10 +1,7 @@
-a, b = map(int, input().split())
-arr = list(map(int, input().split()))
+from itertools import permutations
 
-answer = [sum(arr[:b])]  # O(n)
+n = int(input())
+arr = list(range(1, n + 1))
 
-for i in range(len(arr) - b):
-    amount = answer[i] - arr[i] + arr[i + b]
-    answer.append(amount)
-
-print(max(answer))
+for case in list(permutations(arr, n)):
+    print(*case)
