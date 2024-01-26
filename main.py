@@ -1,22 +1,24 @@
-# 최소 한 개의 모음과 최소 두 개의 자음으로 구성되어 있다.
-# 문자열은 정렬되어있어야한다.
-from itertools import combinations
+"""
+n = 1 -> 1 = 1
+n = 2 -> 00, 11 = 2
+n = 3 -> 001, 100, 111 = 3
+n = 4 -> 0011, 0000, 1001, 1100, 1111 = 5
+n = 5 -> 00001, 00100, 10000, 00111, 11001, 11100,10011, 11111
+"""
 
-l, c = map(int, input().split())
-arr = list(input().split())
+n = int(input())
+if n == 1:
+    print(1)
+    exit()
+elif n == 2:
+    print(2)
+    exit()
 
-v = {"a", "i", "e", "o", "u"}
-not_v = set("bcdfghjklmnpqrstvwxyz")
+dp = [0] * (n + 1)
+dp[1] = 1
+dp[2] = 2
 
-answer = []
+for i in range(3, n + 1):
+    dp[i] = (dp[i - 1] + dp[i - 2]) % 15746
 
-cases = list(combinations(arr, l))
-for case in cases:
-    if len(set(case).intersection(v)) >= 1 and len(set(case).intersection(not_v)) >= 2:
-        case = sorted(case)
-        password = "".join(case)
-        answer.append(password)
-
-answer.sort()
-for i in answer:
-    print(i)
+print(dp[n])
