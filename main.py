@@ -1,20 +1,17 @@
-# 회의는 한번 시작하면 중간에 중단될 수 없다.
-# 회의가 끝나는 것과 동시에 다음 회의가 시작될 수 있다.
-
 n = int(input())
-arr = []
 
-for _ in range(n):
-    start, end = map(int, input().split())
-    arr.append([start, end])
+if n < 100:
+    print(n)
+    exit()
 
-arr.sort(key=lambda x: (x[1], x[0]))
+answer = 99
 
-answer = 0
-start, end = 0, 0
-for a in arr:
-    if end <= a[0]:
-        start, end = a[0], a[1]
+for i in range(100, n + 1):
+    k = str(i)
+    m = int(k[len(k) // 2])
+    a, b = int(k[0]), int(k[-1])
+
+    if (a + b) / 2 == m:
         answer += 1
 
 print(answer)
