@@ -1,19 +1,15 @@
-a, b = input().split()
+# A는 재배열해도 된다. B는 안된다.
+import math
+import heapq
 
-if len(a) == len(b):
-    answer = 0
-    for i in range(len(a)):
-        if a[i] != b[i]:
-            answer += 1
-else:
-    answer = 99999
+n = int(input())
+a = list(map(int, input().split()))
+b = list(map(int, input().split()))
 
-    for i in range(len(b) - len(a) + 1):
-        temp = 0
-        s = b[i:i + len(a)]
-        for j in range(len(s)):
-            if a[j] != s[j]:
-                temp += 1
-        answer = min(answer, temp)
+heapq.heapify(b)
+a.sort(reverse=True)
+answer = 0
+for i in range(n):
+    answer += a[i] * heapq.heappop(b)
 
 print(answer)
