@@ -1,15 +1,19 @@
-# A는 재배열해도 된다. B는 안된다.
-import math
-import heapq
+# 국어점수가 감소하는 순서로 먼저 정렬
+# 국어 점수가 같으면 영어 점수 오름차순
+# 국어 점수와 영어 점수가 같으면 수학 점수가 감소하는 순서
+
 
 n = int(input())
-a = list(map(int, input().split()))
-b = list(map(int, input().split()))
+arr = []
 
-heapq.heapify(b)
-a.sort(reverse=True)
-answer = 0
-for i in range(n):
-    answer += a[i] * heapq.heappop(b)
+for _ in range(n):
+    name, korean, english, math = input().split()
+    korean = int(korean)
+    english = int(english)
+    math = int(math)
+    arr.append([name, korean, english, math])
 
-print(answer)
+arr.sort(key=lambda x: (-x[1], x[2], -x[3], x[0]))
+
+for a in arr:
+    print(a[0])
