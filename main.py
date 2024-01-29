@@ -1,19 +1,21 @@
-# 국어점수가 감소하는 순서로 먼저 정렬
-# 국어 점수가 같으면 영어 점수 오름차순
-# 국어 점수와 영어 점수가 같으면 수학 점수가 감소하는 순서
-
-
 n = int(input())
 arr = []
 
 for _ in range(n):
-    name, korean, english, math = input().split()
-    korean = int(korean)
-    english = int(english)
-    math = int(math)
-    arr.append([name, korean, english, math])
+    arr.append(input())
 
-arr.sort(key=lambda x: (-x[1], x[2], -x[3], x[0]))
-
+answer = 0
 for a in arr:
-    print(a[0])
+    a = list(a)
+    stack = []
+    while a:
+        stack.append(a.pop())
+        # 스택의 길이가 2 이상이고 스택의 맨 마지막과 그 전에 요소가 같으면 반복
+        while len(stack) >= 2 and stack[-1] == stack[-2]:
+            stack.pop()
+            stack.pop()
+    # 스택이 비어있으면 좋은 단어
+    if not stack:
+        answer += 1
+
+print(answer)
